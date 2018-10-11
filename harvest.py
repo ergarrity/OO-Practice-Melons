@@ -129,5 +129,23 @@ def get_sellability_report(melons):
     	print ("Harvested by {} from Field {} {}".format(objct.harvester, objct.field, sellable_phrase))
 
 
+def make_melons_from_log(file):
+	""" Make melon object from text file of melon info """
+
+	with open(file) as harvest_log:
+		list_of_melons = []
+		for line in harvest_log:
+			line = line.strip()
+			line = line.split(' ')
+			shape = int(line[1])
+			color = int(line[3])
+			type_of_melon = melons_by_id[line[5]]
+			harvester = line[8]
+			field = int(line[11])
+			
+			list_of_melons.append(Melon(type_of_melon, shape, color, field, harvester))
+
+	print(list_of_melons)
+
 
 
